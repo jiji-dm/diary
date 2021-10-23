@@ -1,0 +1,32 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+
+    <!--
+        (action=)はこれに対し書いたurlに対しデータを送信するか、または
+    ""←のように空文字にすると今現在いるurlに対してデータを扱うかということになる。
+        (method=)はこれに対してどのようにデータをするか
+        2パターンありPOST　か　GET である
+        POSTに関してはデータを内部的に扱う方法
+        GETに関してはデータを公開できる状態であること(例amazonなどの商品ページなど)
+    -->
+    <table class='table'>
+        <tr>
+            <th>タイトル</th>
+            <td>{{ day.title }}</td>
+        </tr>
+        <tr>
+            <th>本文</th>
+            <td>{{ day.text | linebreaksbr }}</td>
+            <!--djangoの機能→　| linebreaksbrとすることで本文参照時、改行を行う-->
+        </tr>
+        <tr>
+            <th>日付</th>
+            <td>{{ day.date }}</td>
+        </tr>
+    </table>
+<!--form.as_pと置くことで自動的にDayモデルの内容から生成してくれる-->
+
+{% endblock %}
+
+<!--<form>内のボタンサブミットによってサーバーにデータを与える仕組み-->
